@@ -1,0 +1,17 @@
+zmodule romkatv/powerlevel10k
+
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions
+
+zmodule completion
+
+# Warn you when you run a command that you've got an alias for
+zmodule djui/alias-tips
+
+# Oh my zsh stuff
+zmodule ohmyzsh/ohmyzsh \
+    --source 'oh-my-zsh.sh' \
+    --source 'plugins/git/git.plugin.zsh' \
+    --source 'plugins/kubectl/kubectl.plugin.zsh' 
+
+zmodule rupa/z --source 'z.sh'
