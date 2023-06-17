@@ -2,8 +2,7 @@ zmodule romkatv/powerlevel10k
 
 zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
-
-zmodule completion
+zmodule zsh-users/zsh-completions --fpath src
 
 # Warn you when you run a command that you've got an alias for
 zmodule djui/alias-tips
@@ -12,6 +11,20 @@ zmodule djui/alias-tips
 zmodule ohmyzsh/ohmyzsh \
     --source 'oh-my-zsh.sh' \
     --source 'plugins/git/git.plugin.zsh' \
-    --source 'plugins/kubectl/kubectl.plugin.zsh' 
+    --source 'plugins/kubectl/kubectl.plugin.zsh' \
+    --source 'plugins/docker/docker.plugin.zsh' --fpath 'plugins/docker' \
+    --source 'plugins/mvn/mvn.plugin.zsh' \
+    --source 'plugins/sudo/sudo.plugin.zsh' \
+    --source 'plugins/git-auto-fetch/git-auto-fetch.plugin.zsh' \
+
 
 zmodule rupa/z --source 'z.sh'
+
+if type brew &>/dev/null; then
+    # Brew
+    echo "Zim brew: $(brew --prefix)"
+    zmodule "$(brew --prefix)/completions/zsh" --fpath .
+    zmodule "$(brew --prefix)/share/zsh" --fpath "site-functions" 
+fi
+
+zmodule completion
