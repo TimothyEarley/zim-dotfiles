@@ -4,19 +4,17 @@ zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions --fpath src
 
-# Warn you when you run a command that you've got an alias for
-zmodule djui/alias-tips
-
 # Oh my zsh stuff
-zmodule ohmyzsh/ohmyzsh \
-    --source 'oh-my-zsh.sh' \
-    --source 'plugins/git/git.plugin.zsh' \
-    --source 'plugins/kubectl/kubectl.plugin.zsh' \
-    --source 'plugins/docker/docker.plugin.zsh' --fpath 'plugins/docker' \
-    --source 'plugins/mvn/mvn.plugin.zsh' \
-    --source 'plugins/sudo/sudo.plugin.zsh' \
-    --source 'plugins/git-auto-fetch/git-auto-fetch.plugin.zsh' \
+zmodule ohmyzsh/ohmyzsh --root 'plugins/git-auto-fetch'
+zmodule ohmyzsh/ohmyzsh --root 'plugins/mvn'
+zmodule ohmyzsh/ohmyzsh --root 'plugins/sudo'
+# Warn you when you run a command that you've got an alias for
+zstyle ':omz:plugins:alias-finder' autoload yes
+zmodule ohmyzsh/ohmyzsh --root 'plugins/alias-finder'
+zmodule ohmyzsh/ohmyzsh --root 'plugins/fzf'
 
+# key bindings, especially important is up-line-or-beginning-search
+zmodule ohmyzsh/ohmyzsh --source 'lib/key-bindings.zsh'
 
 zmodule rupa/z --source 'z.sh'
 
@@ -28,3 +26,8 @@ if type brew &>/dev/null; then
 fi
 
 zmodule completion
+
+# these plugins mess with compdef/compinit
+zmodule ohmyzsh/ohmyzsh --root 'plugins/git'
+zmodule ohmyzsh/ohmyzsh --root 'plugins/docker' --fpath 'plugins/docker'
+zmodule ohmyzsh/ohmyzsh --root 'plugins/kubectl'
